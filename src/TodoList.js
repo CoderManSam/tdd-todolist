@@ -12,32 +12,56 @@ class TodoList {
           text: description,
           status: 'incomplete'
         }
+
+        this.items.push(newItem)
         
+        return this.items
       }
 
-      getAll() {
-          
-      }
+      setComplete(j) {
+        this.items[j-1].status = "complete"
 
-      setComplete() {
-
+        return this.items
       }
 
       getIncomplete() {
+
+        const index = this.items.findIndex(status => status === "incomplete")
+        this.items.splice(index, 1)
+
+        return this.items
+      }
+
+      getComplete() {
+
+        const index = this.items.findIndex(status => status === "incomplete")
+        this.items.splice(index, 1)
+
+        return this.items
           
-     }
+      }
 
-     getComplete() {
-          
-     }
+      searchId(j) {
+        
+        const index = this.items.findIndex(item => item.id === j)
+        let itemByItsId = [this.items[index]]
 
-     searchId() {
-          
-     }
+        if (index === -1) {
+          itemByItsId = "Todo item not found"
+        }
 
-     removeById() {
+        return itemByItsId
 
-     }
+      }
+
+      removeById(j) {
+        const index = this.items.findIndex(id => id === j)
+        this.items.splice(index, 1)
+
+
+
+        return this.items
+      }
 }
 
 module.exports = TodoList
